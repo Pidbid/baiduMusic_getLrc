@@ -65,11 +65,11 @@
 </span> 
 </p>
 <p>
-	<span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 那么问题①来了：百度音乐有一个问题就是每一页只能显示25首歌曲，比如陈奕迅在百度音乐有501首歌曲，那么就需要21页来显示。但是在切换页面的时候并没有通过“普通方式”（例如：在地址栏加上“&amp;page=n”此类）而是通过get获取数据。解决办法：通过抓包得到提交地址为“http://music.baidu.com/data/user/getsongs?start=+N”其中的N为25的倍数，如果不是25的倍数，则会显示出错。提交后返回json数据。那么问题②来了，一个页面抓取之后怎么进行第二个页面的抓取呢？不急，我们从某歌手主页可以通过正则找到他在百度音乐被收录了多少歌曲。所以实际的页数也就是N%25+1（此处%为C语法，在Python3中为//）为什么+1呢？因为第一次请求json数据为“http://music.baidu.com/data/user/getsongs?start=0”从开始，所以务必+1。将所有的歌曲ID提取，做成一个list，返回即可。<br />
+	<span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 那么问题①来了：百度音乐有一个问题就是每一页只能显示25首歌曲，比如陈奕迅在百度音乐有501首歌曲，那么就需要21页来显示。但是在切换页面的时候并没有通过“普通方式”（例如：在地址栏加上“&amp;page=n”此类）而是通过get获取数据。解决办法：通过抓包得到提交地址为“http://music.baidu.com/data/user/getsongs?start=+N” 其中的N为25的倍数，如果不是25的倍数，则会显示出错。提交后返回json数据。那么问题②来了，一个页面抓取之后怎么进行第二个页面的抓取呢？不急，我们从某歌手主页可以通过正则找到他在百度音乐被收录了多少歌曲。所以实际的页数也就是N%25+1（此处%为C语法，在Python3中为//）为什么+1呢？因为第一次请求json数据为“http://music.baidu.com/data/user/getsongs?start=0” 从开始，所以务必+1。将所有的歌曲ID提取，做成一个list，返回即可。<br />
 </span> 
 </p>
 <p>
-	<span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 三：我们得到了所有的音乐ID，那么我们只需要得到歌词下载地址即可。百度歌曲的地址为“http://music.baidu.com/song/+ID”此处的ID我们已经提取完毕。通过对这个页面的分析，我们得出该歌曲的下载地址。万事俱备，让我们来下载吧！<br />
+	<span style="font-size:18px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 三：我们得到了所有的音乐ID，那么我们只需要得到歌词下载地址即可。百度歌曲的地址为“http://music.baidu.com/song/+ID” 此处的ID我们已经提取完毕。通过对这个页面的分析，我们得出该歌曲的下载地址。万事俱备，让我们来下载吧！<br />
 </span> 
 </p>
 <p>
